@@ -1,0 +1,23 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    <form method="post">
+        <div>
+            <label asp-for="year">Year:</label>
+            <input asp-for="year" />
+        </div>
+        <div>
+            <button type="submit">Convert</button>
+            <button type="reset">Clear</button>
+        </div>
+    </form>
+    @if (ViewData["Result"] != null)
+    {
+        <h2>@ViewData["Result"]</h2>
+        <img src=ViewData["ImageSrc"] alt="@ViewData["Result"]" />
+    }
+</div>
