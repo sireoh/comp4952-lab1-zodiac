@@ -1,23 +1,33 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Vincent Fung - COMP4952 Lab 1 - Zodiac, A01380639";
 }
 
 <div>
+    <h2>@ViewData["Title"]</h2>
     <form method="post">
         <div>
             <label asp-for="year">Year:</label>
             <input asp-for="year" />
         </div>
         <div>
-            <button type="submit">Convert</button>
-            <button type="reset">Clear</button>
+            <button type="submit" class="btn btn-primary">Get Zodiac</button>
+            <a asp-page="/Index" class="btn btn-success">Clear</a>
         </div>
     </form>
-    @if (ViewData["Result"] != null)
+    @if (ViewData["ResultString"] != null)
     {
-        <h2>@ViewData["Result"]</h2>
-        <img src=ViewData["ImageSrc"] alt="@ViewData["Result"]" />
+        <div class="@ViewData["AlertType"] text-center">
+            @if ((bool)ViewData["isValid"]!)
+            {
+                <p>Your zodiac is <strong>@ViewData["ResultString"]</strong></p>
+                <img src="@ViewData["ResultImageSrc"]" alt="@ViewData["ResultString"]" />
+            }
+            else
+            {
+                <p>@ViewData["ResultString"]</p>
+            }
+        </div>
     }
 </div>

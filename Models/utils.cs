@@ -22,6 +22,6 @@ public static class Utils
 
     public static string GetImageSrc(string zodiac)
     {
-        return $"~/images/{zodiac.ToLower()}.png";
+        return $"/images/{zodiac.ToLower()}.png";
     }
 }

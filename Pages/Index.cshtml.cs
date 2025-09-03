@@ -25,12 +25,16 @@ public class IndexModel : PageModel
         int nextYear = DateTime.Now.Year + 1;
         if (year < 1900 || year > nextYear)
         {
-            ViewData["Result"] = $"Year must be between 1900 and {nextYear}. Please try again.";
+            ViewData["isValid"] = false;
+            ViewData["AlertType"] = "alert alert-danger";
+            ViewData["ResultString"] = $"Year must be between 1900 and {nextYear}. Please try again.";
         }
         else
         {
-            ViewData["Result"] = $"Your zodiac is {Utils.GetZodiac(year)}";
-            ViewData["ImageSrc"] = Utils.GetImageSrc(Utils.GetZodiac(year));
+            ViewData["isValid"] = true;
+            ViewData["AlertType"] = "alert alert-success";
+            ViewData["ResultString"] = Utils.GetZodiac(year);
+            ViewData["ResultImageSrc"] = Utils.GetImageSrc(Utils.GetZodiac(year));
         }
         return Page();
     }
